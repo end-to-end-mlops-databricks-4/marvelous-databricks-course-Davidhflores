@@ -894,6 +894,7 @@ dev = [
 ]
 test = [
     { name = "pre-commit" },
+    { name = "pydantic-settings" },
     { name = "pyspark" },
     { name = "pytest" },
     { name = "pytest-cov" },
@@ -916,6 +917,7 @@ requires-dist = [
     { name = "pre-commit", marker = "extra == 'test'", specifier = ">=4.1.0,<5" },
     { name = "pyarrow", specifier = "==17.0.0" },
     { name = "pydantic", specifier = "==2.11.7" },
+    { name = "pydantic-settings", marker = "extra == 'test'", specifier = ">=2.0.0" },
     { name = "pyspark", marker = "extra == 'test'", specifier = ">=3.4.0,<4" },
     { name = "pytest", marker = "extra == 'test'", specifier = ">=8.0.0,<9" },
     { name = "pytest-cov", marker = "extra == 'test'", specifier = ">=5.0.0,<6" },
@@ -1266,6 +1268,20 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/b0/6a/adf5734ffd52bf86d865093ad70b2ce543415e0e356f6cacabbc0d9ad910/pydantic_core-2.33.2-cp312-cp312-win32.whl", hash = "sha256:9cb1da0f5a471435a7bc7e439b8a728e8b61e59784b2af70d7c169f8dd8ae290", size = 1892628 },
     { url = "https://files.pythonhosted.org/packages/43/e4/5479fecb3606c1368d496a825d8411e126133c41224c1e7238be58b87d7e/pydantic_core-2.33.2-cp312-cp312-win_amd64.whl", hash = "sha256:f941635f2a3d96b2973e867144fde513665c87f13fe0e193c158ac51bfaaa7b2", size = 1955866 },
     { url = "https://files.pythonhosted.org/packages/0d/24/8b11e8b3e2be9dd82df4b11408a67c61bb4dc4f8e11b5b0fc888b38118b5/pydantic_core-2.33.2-cp312-cp312-win_arm64.whl", hash = "sha256:cca3868ddfaccfbc4bfb1d608e2ccaaebe0ae628e1416aeb9c4d88c001bb45ab", size = 1888894 },
+]
+
+[[package]]
+name = "pydantic-settings"
+version = "2.11.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pydantic" },
+    { name = "python-dotenv" },
+    { name = "typing-inspection" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/20/c5/dbbc27b814c71676593d1c3f718e6cd7d4f00652cefa24b75f7aa3efb25e/pydantic_settings-2.11.0.tar.gz", hash = "sha256:d0e87a1c7d33593beb7194adb8470fc426e95ba02af83a0f23474a04c9a08180", size = 188394 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/83/d6/887a1ff844e64aa823fb4905978d882a633cfe295c32eacad582b78a7d8b/pydantic_settings-2.11.0-py3-none-any.whl", hash = "sha256:fe2cea3413b9530d10f3a5875adffb17ada5c1e1bab0b2885546d7310415207c", size = 48608 },
 ]
 
 [[package]]
