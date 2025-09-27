@@ -1,0 +1,36 @@
+prd:
+  catalog_name: mlops_prd
+  schema_name: floreswo
+acc:
+  catalog_name: mlops_acc
+  schema_name: floreswo
+dev:
+  catalog_name: mlops_dev
+  schema_name: floreswo
+
+experiment_name_basic: /Shared/dflores-wine-basic
+experiment_name_custom: /Shared/dflores-wine-custom
+experiment_name_fe: /Shared/dflores-wine-fe
+
+parameters:
+  learning_rate: 0.01
+  n_estimators: 1000
+  max_depth: 6
+
+
+num_features:
+  - fixed_acidity
+  - volatile_acidity
+  - citric_acid
+  - residual_sugar
+  - chlorides
+  - free_sulfur_dioxide
+  - total_sulfur_dioxide
+  - pH
+  - sulphates
+  - alcohol
+
+
+targets: 
+  - pre_quality
+  - quality
