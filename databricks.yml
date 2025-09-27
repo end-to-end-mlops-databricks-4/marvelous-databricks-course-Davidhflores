@@ -1,0 +1,15 @@
+bundle:
+  name: marvelousmlops_dflores_project
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://dbc-f122dc18-1b68.cloud.databricks.com
+
+  ## Optionally, there could be 'staging' or 'prod' targets here.
+  #
+  # prod:
+  #   workspace:
+  #     host: https://dbc-f122dc18-1b68.cloud.databricks.com
