@@ -1,41 +1,28 @@
 <h1 align="center">
-Marvelous MLOps End-to-end MLOps with Databricks course
+Whine Quality Clasification
 
-## Practical information
-- Weekly lectures on Wednesdays 16:00-18:00 CET.
-- Code for the lecture is shared before the lecture.
-- Presentation and lecture materials are shared right after the lecture.
-- Video of the lecture is uploaded within 24 hours after the lecture.
+## Marvelous ML Ops with Databricks Project
 
-- Every week we set up a deliverable, and you implement it with your own dataset.
-- To submit the deliverable, create a feature branch in that repository, and a PR to main branch. The code can be merged after we review & approve & CI pipeline runs successfully.
-- The deliverables can be submitted with a delay (for example, lecture 1 & 2 together), but we expect you to finish all assignments for the course before the 15th of June.
+- **Dataset:** wine quality publicly shared datasets from UC Irvine. [Found here](https://archive.ics.uci.edu/dataset/186/wine+quality)
+
+- **Goal:** model wine quality based on physicochemincal tests.
+
+- **Observation:** the dataset target is highly imbalanced (quality column):
+
+    | quality | count |
+    | --- | --- |
+    | 6	| 2198 |
+    | 5	| 1457 |
+    | 7	| 880 |
+    | 8	| 175 |
+    | 4	| 63 |
+    | 3	| 20 |
+    | 9	| 5 |
+
+    So I decided to pre-classify qualities of 8,4,3 and 9 to a class '101' and after that anything that is classified there to process to the proper class of 8,4,3 or 9.
 
 
-## Set up your environment
-In this course, we use Databricks 16.04 LTS runtime, which uses Python 3.11.
-In our examples, we use UV. Check out the documentation on how to install it: https://docs.astral.sh/uv/getting-started/installation/
 
-Install task: https://taskfile.dev/installation/
-
-Update .env file with the following:
-```
-GIT_TOKEN=<your github PAT>
-```
-
-To create a new environment and create a lockfile, run:
-```
-task sync-dev
-source .venv/bin/activate
-```
-
-Or, alternatively:
-```
-export GIT_TOKEN=<your github PAT>
-uv venv -p 3.11 .venv
-source .venv/bin/activate
-uv sync --extra dev
-```
 
 
 
