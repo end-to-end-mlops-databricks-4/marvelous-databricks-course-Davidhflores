@@ -20,9 +20,3 @@ Whine Quality Clasification
     | 9	| 5 |
 
     So I decided to pre-classify qualities of 8,4,3 and 9 to a class '101' and after that anything that is classified there to process to the proper class of 8,4,3 or 9.
-
-
-
-
-
-

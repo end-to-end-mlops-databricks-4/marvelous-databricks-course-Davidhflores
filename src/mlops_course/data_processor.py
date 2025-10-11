@@ -1,18 +1,16 @@
 """Data preprocessing module."""
 
-import datetime
-import time
-import numpy as np
 import pandas as pd
-
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import current_timestamp, to_utc_timestamp
 from sklearn.model_selection import train_test_split
 
 from mlops_course.config import ProjectConfig
 
+
 class DataProcessor:
     """A class for preprocessing and managing DataFrame operations.
+
     This class handles data preprocessing, splitting, and saving to Databricks tables.
     """
 
@@ -20,14 +18,14 @@ class DataProcessor:
         self.df = pandas_df  # Store the DataFrame as self.df
         self.config = config  # Store the configuration
         self.spark = spark
-    
+
     def preprocess(self) -> None:
         """Preprocess the DataFrame stored in self.df.
+
         This method creates the pre-quality column and performs feature engineering.
         """
-
         # replace spaces in column names
-        self.df.columns = self.df.columns.str.replace(' ', '_')
+        self.df.columns = self.df.columns.str.replace(" ", "_")
 
         # created a new class column that will replicate classes 5, 6 and 7 but
         # will group the minority classes into a new class called 101
@@ -40,7 +38,7 @@ class DataProcessor:
         targets = self.config.targets
         relevant_columns = num_features + targets
         self.df = self.df[relevant_columns]
-    
+
     def split_data(self, test_size: float = 0.2, random_state: int = 42) -> tuple[pd.DataFrame, pd.DataFrame]:
         """Split the DataFrame (self.df) into training and test sets.
 

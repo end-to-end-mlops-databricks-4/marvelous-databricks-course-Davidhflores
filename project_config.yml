@@ -31,6 +31,6 @@ num_features:
   - alcohol
 
 
-targets: 
+targets:
   - pre_quality
   - quality
