@@ -231,7 +231,7 @@ wheels = [
 
 [[package]]
 name = "databricks-connect"
-version = "16.4.5"
+version = "16.3.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "databricks-sdk" },
@@ -247,20 +247,20 @@ dependencies = [
     { name = "six" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/3d/c6/12239a17ff2a52aa802d0a3c7742d8a4640ea2b4eef7560250127c46e921/databricks_connect-16.4.5-py2.py3-none-any.whl", hash = "sha256:b5e5848ea3102a24e10f8fcc014c177c37ffec518181f6c40b761942da6f60c3", size = 2461259 },
+    { url = "https://files.pythonhosted.org/packages/a2/ed/15e6982c7bed052c78b207eea59dda9ae618c5cbf677acc31a44a7338ae3/databricks_connect-16.3.5-py2.py3-none-any.whl", hash = "sha256:9a6794e38346d13807199660b9af58851f4d38b04aeba0d5843a1e1529b0aeea", size = 2425557 },
 ]
 
 [[package]]
 name = "databricks-sdk"
-version = "0.67.0"
+version = "0.55.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "google-auth" },
     { name = "requests" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/b3/5b/df3e5424d833e4f3f9b42c409ef8b513e468c9cdf06c2a9935c6cbc4d128/databricks_sdk-0.67.0.tar.gz", hash = "sha256:f923227babcaad428b0c2eede2755ebe9deb996e2c8654f179eb37f486b37a36", size = 761000 }
+sdist = { url = "https://files.pythonhosted.org/packages/bf/50/8231952fa2dbafd6f7a4cb288530280f4a227ef69dbfdf6224ab270f83d5/databricks_sdk-0.55.0.tar.gz", hash = "sha256:087b3acd139857013bdd9762425e04db47ebda85a8f9845719b6d97845e588b3", size = 764071 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a0/ca/2aff3817041483fb8e4f75a74a36ff4ca3a826e276becd1179a591b6348f/databricks_sdk-0.67.0-py3-none-any.whl", hash = "sha256:ef49e49db45ed12c015a32a6f9d4ba395850f25bb3dcffdcaf31a5167fe03ee2", size = 718422 },
+    { url = "https://files.pythonhosted.org/packages/aa/d9/2fc1825c3e74228d31e6e21d20d28bf3d8278cb7301e2ccea9d42de97ede/databricks_sdk-0.55.0-py3-none-any.whl", hash = "sha256:77bb3e6ebfbe2e804f32bc71f06e7c99f0ec8f5a2eaa9fa848eac214106bcb8b", size = 722902 },
 ]
 
 [[package]]
@@ -907,8 +907,8 @@ test = [
 requires-dist = [
     { name = "cffi", specifier = "==1.17.1" },
     { name = "cloudpickle", specifier = "==3.1.1" },
-    { name = "databricks-connect", marker = "extra == 'dev'", specifier = "==16.4.5" },
-    { name = "databricks-sdk", specifier = "==0.67.0" },
+    { name = "databricks-connect", marker = "extra == 'dev'", specifier = ">=16.0,<17" },
+    { name = "databricks-sdk", specifier = "==0.55.0" },
     { name = "ipykernel", marker = "extra == 'dev'", specifier = ">=6.29.5,<7" },
     { name = "lightgbm", specifier = "==4.6.0" },
     { name = "loguru", specifier = "==0.7.3" },
@@ -921,7 +921,7 @@ requires-dist = [
     { name = "pyarrow", specifier = "==17.0.0" },
     { name = "pydantic", specifier = "==2.11.7" },
     { name = "pydantic-settings", marker = "extra == 'test'", specifier = ">=2.10.1" },
-    { name = "pyspark", marker = "extra == 'test'", specifier = "==4.0.1" },
+    { name = "pyspark", marker = "extra == 'test'", specifier = ">=3.4.0,<4" },
     { name = "pytest", marker = "extra == 'test'", specifier = ">=8.0.0,<9" },
     { name = "pytest-cov", marker = "extra == 'test'", specifier = ">=5.0.0,<6" },
     { name = "python-dotenv", specifier = "==1.1.1" },
@@ -1178,11 +1178,11 @@ wheels = [
 
 [[package]]
 name = "py4j"
-version = "0.10.9.9"
+version = "0.10.9.7"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/38/31/0b210511177070c8d5d3059556194352e5753602fa64b85b7ab81ec1a009/py4j-0.10.9.9.tar.gz", hash = "sha256:f694cad19efa5bd1dee4f3e5270eb406613c974394035e5bfc4ec1aba870b879", size = 761089 }
+sdist = { url = "https://files.pythonhosted.org/packages/1e/f2/b34255180c72c36ff7097f7c2cdca02abcbd89f5eebf7c7c41262a9a0637/py4j-0.10.9.7.tar.gz", hash = "sha256:0b6e5315bb3ada5cf62ac651d107bb2ebc02def3dee9d9548e3baac644ea8dbb", size = 1508234 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/bd/db/ea0203e495be491c85af87b66e37acfd3bf756fd985f87e46fc5e3bf022c/py4j-0.10.9.9-py2.py3-none-any.whl", hash = "sha256:c7c26e4158defb37b0bb124933163641a2ff6e3a3913f7811b0ddbe07ed61533", size = 203008 },
+    { url = "https://files.pythonhosted.org/packages/10/30/a58b32568f1623aaad7db22aa9eafc4c6c194b429ff35bdc55ca2726da47/py4j-0.10.9.7-py2.py3-none-any.whl", hash = "sha256:85defdfd2b2376eb3abf5ca6474b51ab7e0de341c75a02f46dc9b5976f5a5c1b", size = 200481 },
 ]
 
 [[package]]
@@ -1307,12 +1307,12 @@ wheels = [
 
 [[package]]
 name = "pyspark"
-version = "4.0.1"
+version = "3.5.7"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "py4j" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ae/40/1414582f16c1d7b051c668c2e19c62d21a18bd181d944cb24f5ddbb2423f/pyspark-4.0.1.tar.gz", hash = "sha256:9d1f22d994f60369228397e3479003ffe2dd736ba79165003246ff7bd48e2c73", size = 434204896 }
+sdist = { url = "https://files.pythonhosted.org/packages/cb/65/2764b1840aa6ea5f7e668a36702c3128ac54d0b861d3d57669b2453469a6/pyspark-3.5.7.tar.gz", hash = "sha256:80e36514e0c5c126d35a26adf4f405cd4a69de96a8ea8a3c1e9a65fce2fb4eaa", size = 317370347 }
 
 [[package]]
 name = "pytest"
