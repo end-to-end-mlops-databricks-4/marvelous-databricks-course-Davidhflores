@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="6" failures="0" skipped="1" tests="7" time="3.687" timestamp="2025-10-11T12:14:29.353655-05:00" hostname="SunnyDatas-MacBook-Air-1379.local"><testcase classname="tests.unit_tests.test_dataprocessor" name="test_data_ingestion" time="0.122"><error message="failed on setup with &quot;pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GATEWAY_EXITED] Java gateway process exited before sending its port number.&quot;">@pytest.fixture(scope="session")
     def spark_session() -&gt; SparkSession:
         """Create and return a SparkSession for testing.
-    
+
         This fixture creates a SparkSession with the specified configuration and returns it for use in tests.
         """
         # One way
@@ -18,8 +18,8 @@
              ^^^^^^^^^^^^^
         )
 
-tests/fixtures/datapreprocessor_fixture.py:30: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/fixtures/datapreprocessor_fixture.py:30:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 .venv/lib/python3.12/site-packages/pyspark/sql/session.py:497: in getOrCreate
     sc = SparkContext.getOrCreate(sparkConf)
          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -30,7 +30,7 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 .venv/lib/python3.12/site-packages/pyspark/context.py:436: in _ensure_initialized
     SparkContext._gateway = gateway or launch_gateway(conf)
                                        ^^^^^^^^^^^^^^^^^^^^
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 conf = &lt;pyspark.conf.SparkConf object at 0x16734a1e0&gt;
 popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/extensions/ms-python.debugpy-2025.10.0-darwin-arm64/bund...COV_CORE_CONFIG': ':', ...}, 'preexec_fn': &lt;function launch_gateway.&lt;locals&gt;.preexec_func at 0x171676840&gt;, 'stdin': -1}
@@ -38,7 +38,7 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
     def launch_gateway(conf=None, popen_kwargs=None):
         """
         launch jvm gateway
-    
+
         Parameters
         ----------
         conf : :py:class:`pyspark.SparkConf`
@@ -48,7 +48,7 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
             the py4j JVM. This is a developer feature intended for use in
             customizing how pyspark interacts with the py4j JVM (e.g., capturing
             stdout/stderr).
-    
+
         Returns
         -------
         ClientServer or JavaGateway
@@ -72,7 +72,7 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
             if os.environ.get("SPARK_TESTING"):
                 submit_args = " ".join(["--conf spark.ui.enabled=false", submit_args])
             command = command + shlex.split(submit_args)
-    
+
             # Create a temporary directory where the gateway server should write the connection
             # information.
             conn_info_dir = tempfile.mkdtemp()
@@ -80,10 +80,10 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
                 fd, conn_info_file = tempfile.mkstemp(dir=conn_info_dir)
                 os.close(fd)
                 os.unlink(conn_info_file)
-    
+
                 env = dict(os.environ)
                 env["_PYSPARK_DRIVER_CONN_INFO_PATH"] = conn_info_file
-    
+
                 # Launch the Java gateway.
                 popen_kwargs = {} if popen_kwargs is None else popen_kwargs
                 # We open a pipe to stdin so that the Java gateway can die when the pipe is broken
@@ -94,17 +94,17 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
                     # Don't send ctrl-c / SIGINT to the Java gateway:
                     def preexec_func():
                         signal.signal(signal.SIGINT, signal.SIG_IGN)
-    
+
                     popen_kwargs["preexec_fn"] = preexec_func
                     proc = Popen(command, **popen_kwargs)
                 else:
                     # preexec_fn not supported on Windows
                     proc = Popen(command, **popen_kwargs)
-    
+
                 # Wait for the file to appear, or for the process to exit, whichever happens first.
                 while not proc.poll() and not os.path.isfile(conn_info_file):
                     time.sleep(0.1)
-    
+
                 if not os.path.isfile(conn_info_file):
 &gt;                   raise PySparkRuntimeError(
                         error_class="JAVA_GATEWAY_EXITED",
@@ -115,7 +115,7 @@ E                   pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GA
 .venv/lib/python3.12/site-packages/pyspark/java_gateway.py:107: PySparkRuntimeError</error></testcase><testcase classname="tests.unit_tests.test_dataprocessor" name="test_dataprocessor_init" time="0.000"><error message="failed on setup with &quot;pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GATEWAY_EXITED] Java gateway process exited before sending its port number.&quot;">@pytest.fixture(scope="session")
     def spark_session() -&gt; SparkSession:
         """Create and return a SparkSession for testing.
-    
+
         This fixture creates a SparkSession with the specified configuration and returns it for use in tests.
         """
         # One way
@@ -132,8 +132,8 @@ E                   pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GA
              ^^^^^^^^^^^^^
         )
 
-tests/fixtures/datapreprocessor_fixture.py:30: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/fixtures/datapreprocessor_fixture.py:30:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 .venv/lib/python3.12/site-packages/pyspark/sql/session.py:497: in getOrCreate
     sc = SparkContext.getOrCreate(sparkConf)
          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -144,7 +144,7 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 .venv/lib/python3.12/site-packages/pyspark/context.py:436: in _ensure_initialized
     SparkContext._gateway = gateway or launch_gateway(conf)
                                        ^^^^^^^^^^^^^^^^^^^^
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 conf = &lt;pyspark.conf.SparkConf object at 0x16734a1e0&gt;
 popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/extensions/ms-python.debugpy-2025.10.0-darwin-arm64/bund...COV_CORE_CONFIG': ':', ...}, 'preexec_fn': &lt;function launch_gateway.&lt;locals&gt;.preexec_func at 0x171676840&gt;, 'stdin': -1}
@@ -152,7 +152,7 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
     def launch_gateway(conf=None, popen_kwargs=None):
         """
         launch jvm gateway
-    
+
         Parameters
         ----------
         conf : :py:class:`pyspark.SparkConf`
@@ -162,7 +162,7 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
             the py4j JVM. This is a developer feature intended for use in
             customizing how pyspark interacts with the py4j JVM (e.g., capturing
             stdout/stderr).
-    
+
         Returns
         -------
         ClientServer or JavaGateway
@@ -186,7 +186,7 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
             if os.environ.get("SPARK_TESTING"):
                 submit_args = " ".join(["--conf spark.ui.enabled=false", submit_args])
             command = command + shlex.split(submit_args)
-    
+
             # Create a temporary directory where the gateway server should write the connection
             # information.
             conn_info_dir = tempfile.mkdtemp()
@@ -194,10 +194,10 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
                 fd, conn_info_file = tempfile.mkstemp(dir=conn_info_dir)
                 os.close(fd)
                 os.unlink(conn_info_file)
-    
+
                 env = dict(os.environ)
                 env["_PYSPARK_DRIVER_CONN_INFO_PATH"] = conn_info_file
-    
+
                 # Launch the Java gateway.
                 popen_kwargs = {} if popen_kwargs is None else popen_kwargs
                 # We open a pipe to stdin so that the Java gateway can die when the pipe is broken
@@ -208,17 +208,17 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
                     # Don't send ctrl-c / SIGINT to the Java gateway:
                     def preexec_func():
                         signal.signal(signal.SIGINT, signal.SIG_IGN)
-    
+
                     popen_kwargs["preexec_fn"] = preexec_func
                     proc = Popen(command, **popen_kwargs)
                 else:
                     # preexec_fn not supported on Windows
                     proc = Popen(command, **popen_kwargs)
-    
+
                 # Wait for the file to appear, or for the process to exit, whichever happens first.
                 while not proc.poll() and not os.path.isfile(conn_info_file):
                     time.sleep(0.1)
-    
+
                 if not os.path.isfile(conn_info_file):
 &gt;                   raise PySparkRuntimeError(
                         error_class="JAVA_GATEWAY_EXITED",
@@ -229,7 +229,7 @@ E                   pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GA
 .venv/lib/python3.12/site-packages/pyspark/java_gateway.py:107: PySparkRuntimeError</error></testcase><testcase classname="tests.unit_tests.test_dataprocessor" name="test_column_transformations" time="0.000"><error message="failed on setup with &quot;pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GATEWAY_EXITED] Java gateway process exited before sending its port number.&quot;">@pytest.fixture(scope="session")
     def spark_session() -&gt; SparkSession:
         """Create and return a SparkSession for testing.
-    
+
         This fixture creates a SparkSession with the specified configuration and returns it for use in tests.
         """
         # One way
@@ -246,8 +246,8 @@ E                   pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GA
              ^^^^^^^^^^^^^
         )
 
-tests/fixtures/datapreprocessor_fixture.py:30: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/fixtures/datapreprocessor_fixture.py:30:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 .venv/lib/python3.12/site-packages/pyspark/sql/session.py:497: in getOrCreate
     sc = SparkContext.getOrCreate(sparkConf)
          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -258,7 +258,7 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 .venv/lib/python3.12/site-packages/pyspark/context.py:436: in _ensure_initialized
     SparkContext._gateway = gateway or launch_gateway(conf)
                                        ^^^^^^^^^^^^^^^^^^^^
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 conf = &lt;pyspark.conf.SparkConf object at 0x16734a1e0&gt;
 popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/extensions/ms-python.debugpy-2025.10.0-darwin-arm64/bund...COV_CORE_CONFIG': ':', ...}, 'preexec_fn': &lt;function launch_gateway.&lt;locals&gt;.preexec_func at 0x171676840&gt;, 'stdin': -1}
@@ -266,7 +266,7 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
     def launch_gateway(conf=None, popen_kwargs=None):
         """
         launch jvm gateway
-    
+
         Parameters
         ----------
         conf : :py:class:`pyspark.SparkConf`
@@ -276,7 +276,7 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
             the py4j JVM. This is a developer feature intended for use in
             customizing how pyspark interacts with the py4j JVM (e.g., capturing
             stdout/stderr).
-    
+
         Returns
         -------
         ClientServer or JavaGateway
@@ -300,7 +300,7 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
             if os.environ.get("SPARK_TESTING"):
                 submit_args = " ".join(["--conf spark.ui.enabled=false", submit_args])
             command = command + shlex.split(submit_args)
-    
+
             # Create a temporary directory where the gateway server should write the connection
             # information.
             conn_info_dir = tempfile.mkdtemp()
@@ -308,10 +308,10 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
                 fd, conn_info_file = tempfile.mkstemp(dir=conn_info_dir)
                 os.close(fd)
                 os.unlink(conn_info_file)
-    
+
                 env = dict(os.environ)
                 env["_PYSPARK_DRIVER_CONN_INFO_PATH"] = conn_info_file
-    
+
                 # Launch the Java gateway.
                 popen_kwargs = {} if popen_kwargs is None else popen_kwargs
                 # We open a pipe to stdin so that the Java gateway can die when the pipe is broken
@@ -322,17 +322,17 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
                     # Don't send ctrl-c / SIGINT to the Java gateway:
                     def preexec_func():
                         signal.signal(signal.SIGINT, signal.SIG_IGN)
-    
+
                     popen_kwargs["preexec_fn"] = preexec_func
                     proc = Popen(command, **popen_kwargs)
                 else:
                     # preexec_fn not supported on Windows
                     proc = Popen(command, **popen_kwargs)
-    
+
                 # Wait for the file to appear, or for the process to exit, whichever happens first.
                 while not proc.poll() and not os.path.isfile(conn_info_file):
                     time.sleep(0.1)
-    
+
                 if not os.path.isfile(conn_info_file):
 &gt;                   raise PySparkRuntimeError(
                         error_class="JAVA_GATEWAY_EXITED",
@@ -343,7 +343,7 @@ E                   pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GA
 .venv/lib/python3.12/site-packages/pyspark/java_gateway.py:107: PySparkRuntimeError</error></testcase><testcase classname="tests.unit_tests.test_dataprocessor" name="test_column_selection" time="0.000"><error message="failed on setup with &quot;pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GATEWAY_EXITED] Java gateway process exited before sending its port number.&quot;">@pytest.fixture(scope="session")
     def spark_session() -&gt; SparkSession:
         """Create and return a SparkSession for testing.
-    
+
         This fixture creates a SparkSession with the specified configuration and returns it for use in tests.
         """
         # One way
@@ -360,8 +360,8 @@ E                   pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GA
              ^^^^^^^^^^^^^
         )
 
-tests/fixtures/datapreprocessor_fixture.py:30: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/fixtures/datapreprocessor_fixture.py:30:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 .venv/lib/python3.12/site-packages/pyspark/sql/session.py:497: in getOrCreate
     sc = SparkContext.getOrCreate(sparkConf)
          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -372,7 +372,7 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 .venv/lib/python3.12/site-packages/pyspark/context.py:436: in _ensure_initialized
     SparkContext._gateway = gateway or launch_gateway(conf)
                                        ^^^^^^^^^^^^^^^^^^^^
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 conf = &lt;pyspark.conf.SparkConf object at 0x16734a1e0&gt;
 popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/extensions/ms-python.debugpy-2025.10.0-darwin-arm64/bund...COV_CORE_CONFIG': ':', ...}, 'preexec_fn': &lt;function launch_gateway.&lt;locals&gt;.preexec_func at 0x171676840&gt;, 'stdin': -1}
@@ -380,7 +380,7 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
     def launch_gateway(conf=None, popen_kwargs=None):
         """
         launch jvm gateway
-    
+
         Parameters
         ----------
         conf : :py:class:`pyspark.SparkConf`
@@ -390,7 +390,7 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
             the py4j JVM. This is a developer feature intended for use in
             customizing how pyspark interacts with the py4j JVM (e.g., capturing
             stdout/stderr).
-    
+
         Returns
         -------
         ClientServer or JavaGateway
@@ -414,7 +414,7 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
             if os.environ.get("SPARK_TESTING"):
                 submit_args = " ".join(["--conf spark.ui.enabled=false", submit_args])
             command = command + shlex.split(submit_args)
-    
+
             # Create a temporary directory where the gateway server should write the connection
             # information.
             conn_info_dir = tempfile.mkdtemp()
@@ -422,10 +422,10 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
                 fd, conn_info_file = tempfile.mkstemp(dir=conn_info_dir)
                 os.close(fd)
                 os.unlink(conn_info_file)
-    
+
                 env = dict(os.environ)
                 env["_PYSPARK_DRIVER_CONN_INFO_PATH"] = conn_info_file
-    
+
                 # Launch the Java gateway.
                 popen_kwargs = {} if popen_kwargs is None else popen_kwargs
                 # We open a pipe to stdin so that the Java gateway can die when the pipe is broken
@@ -436,17 +436,17 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
                     # Don't send ctrl-c / SIGINT to the Java gateway:
                     def preexec_func():
                         signal.signal(signal.SIGINT, signal.SIG_IGN)
-    
+
                     popen_kwargs["preexec_fn"] = preexec_func
                     proc = Popen(command, **popen_kwargs)
                 else:
                     # preexec_fn not supported on Windows
                     proc = Popen(command, **popen_kwargs)
-    
+
                 # Wait for the file to appear, or for the process to exit, whichever happens first.
                 while not proc.poll() and not os.path.isfile(conn_info_file):
                     time.sleep(0.1)
-    
+
                 if not os.path.isfile(conn_info_file):
 &gt;                   raise PySparkRuntimeError(
                         error_class="JAVA_GATEWAY_EXITED",
@@ -457,7 +457,7 @@ E                   pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GA
 .venv/lib/python3.12/site-packages/pyspark/java_gateway.py:107: PySparkRuntimeError</error></testcase><testcase classname="tests.unit_tests.test_dataprocessor" name="test_split_data_default_params" time="0.000"><error message="failed on setup with &quot;pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GATEWAY_EXITED] Java gateway process exited before sending its port number.&quot;">@pytest.fixture(scope="session")
     def spark_session() -&gt; SparkSession:
         """Create and return a SparkSession for testing.
-    
+
         This fixture creates a SparkSession with the specified configuration and returns it for use in tests.
         """
         # One way
@@ -474,8 +474,8 @@ E                   pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GA
              ^^^^^^^^^^^^^
         )
 
-tests/fixtures/datapreprocessor_fixture.py:30: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/fixtures/datapreprocessor_fixture.py:30:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 .venv/lib/python3.12/site-packages/pyspark/sql/session.py:497: in getOrCreate
     sc = SparkContext.getOrCreate(sparkConf)
          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -486,7 +486,7 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 .venv/lib/python3.12/site-packages/pyspark/context.py:436: in _ensure_initialized
     SparkContext._gateway = gateway or launch_gateway(conf)
                                        ^^^^^^^^^^^^^^^^^^^^
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 conf = &lt;pyspark.conf.SparkConf object at 0x16734a1e0&gt;
 popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/extensions/ms-python.debugpy-2025.10.0-darwin-arm64/bund...COV_CORE_CONFIG': ':', ...}, 'preexec_fn': &lt;function launch_gateway.&lt;locals&gt;.preexec_func at 0x171676840&gt;, 'stdin': -1}
@@ -494,7 +494,7 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
     def launch_gateway(conf=None, popen_kwargs=None):
         """
         launch jvm gateway
-    
+
         Parameters
         ----------
         conf : :py:class:`pyspark.SparkConf`
@@ -504,7 +504,7 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
             the py4j JVM. This is a developer feature intended for use in
             customizing how pyspark interacts with the py4j JVM (e.g., capturing
             stdout/stderr).
-    
+
         Returns
         -------
         ClientServer or JavaGateway
@@ -528,7 +528,7 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
             if os.environ.get("SPARK_TESTING"):
                 submit_args = " ".join(["--conf spark.ui.enabled=false", submit_args])
             command = command + shlex.split(submit_args)
-    
+
             # Create a temporary directory where the gateway server should write the connection
             # information.
             conn_info_dir = tempfile.mkdtemp()
@@ -536,10 +536,10 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
                 fd, conn_info_file = tempfile.mkstemp(dir=conn_info_dir)
                 os.close(fd)
                 os.unlink(conn_info_file)
-    
+
                 env = dict(os.environ)
                 env["_PYSPARK_DRIVER_CONN_INFO_PATH"] = conn_info_file
-    
+
                 # Launch the Java gateway.
                 popen_kwargs = {} if popen_kwargs is None else popen_kwargs
                 # We open a pipe to stdin so that the Java gateway can die when the pipe is broken
@@ -550,17 +550,17 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
                     # Don't send ctrl-c / SIGINT to the Java gateway:
                     def preexec_func():
                         signal.signal(signal.SIGINT, signal.SIG_IGN)
-    
+
                     popen_kwargs["preexec_fn"] = preexec_func
                     proc = Popen(command, **popen_kwargs)
                 else:
                     # preexec_fn not supported on Windows
                     proc = Popen(command, **popen_kwargs)
-    
+
                 # Wait for the file to appear, or for the process to exit, whichever happens first.
                 while not proc.poll() and not os.path.isfile(conn_info_file):
                     time.sleep(0.1)
-    
+
                 if not os.path.isfile(conn_info_file):
 &gt;                   raise PySparkRuntimeError(
                         error_class="JAVA_GATEWAY_EXITED",
@@ -571,7 +571,7 @@ E                   pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GA
 .venv/lib/python3.12/site-packages/pyspark/java_gateway.py:107: PySparkRuntimeError</error></testcase><testcase classname="tests.unit_tests.test_dataprocessor" name="test_preprocess_empty_dataframe" time="0.000"><error message="failed on setup with &quot;pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GATEWAY_EXITED] Java gateway process exited before sending its port number.&quot;">@pytest.fixture(scope="session")
     def spark_session() -&gt; SparkSession:
         """Create and return a SparkSession for testing.
-    
+
         This fixture creates a SparkSession with the specified configuration and returns it for use in tests.
         """
         # One way
@@ -588,8 +588,8 @@ E                   pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GA
              ^^^^^^^^^^^^^
         )
 
-tests/fixtures/datapreprocessor_fixture.py:30: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/fixtures/datapreprocessor_fixture.py:30:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 .venv/lib/python3.12/site-packages/pyspark/sql/session.py:497: in getOrCreate
     sc = SparkContext.getOrCreate(sparkConf)
          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -600,7 +600,7 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 .venv/lib/python3.12/site-packages/pyspark/context.py:436: in _ensure_initialized
     SparkContext._gateway = gateway or launch_gateway(conf)
                                        ^^^^^^^^^^^^^^^^^^^^
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 conf = &lt;pyspark.conf.SparkConf object at 0x16734a1e0&gt;
 popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/extensions/ms-python.debugpy-2025.10.0-darwin-arm64/bund...COV_CORE_CONFIG': ':', ...}, 'preexec_fn': &lt;function launch_gateway.&lt;locals&gt;.preexec_func at 0x171676840&gt;, 'stdin': -1}
@@ -608,7 +608,7 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
     def launch_gateway(conf=None, popen_kwargs=None):
         """
         launch jvm gateway
-    
+
         Parameters
         ----------
         conf : :py:class:`pyspark.SparkConf`
@@ -618,7 +618,7 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
             the py4j JVM. This is a developer feature intended for use in
             customizing how pyspark interacts with the py4j JVM (e.g., capturing
             stdout/stderr).
-    
+
         Returns
         -------
         ClientServer or JavaGateway
@@ -642,7 +642,7 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
             if os.environ.get("SPARK_TESTING"):
                 submit_args = " ".join(["--conf spark.ui.enabled=false", submit_args])
             command = command + shlex.split(submit_args)
-    
+
             # Create a temporary directory where the gateway server should write the connection
             # information.
             conn_info_dir = tempfile.mkdtemp()
@@ -650,10 +650,10 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
                 fd, conn_info_file = tempfile.mkstemp(dir=conn_info_dir)
                 os.close(fd)
                 os.unlink(conn_info_file)
-    
+
                 env = dict(os.environ)
                 env["_PYSPARK_DRIVER_CONN_INFO_PATH"] = conn_info_file
-    
+
                 # Launch the Java gateway.
                 popen_kwargs = {} if popen_kwargs is None else popen_kwargs
                 # We open a pipe to stdin so that the Java gateway can die when the pipe is broken
@@ -664,17 +664,17 @@ popen_kwargs = {'env': {'BUNDLED_DEBUGPY_PATH': '/Users/david.flores/.vscode/ext
                     # Don't send ctrl-c / SIGINT to the Java gateway:
                     def preexec_func():
                         signal.signal(signal.SIGINT, signal.SIG_IGN)
-    
+
                     popen_kwargs["preexec_fn"] = preexec_func
                     proc = Popen(command, **popen_kwargs)
                 else:
                     # preexec_fn not supported on Windows
                     proc = Popen(command, **popen_kwargs)
-    
+
                 # Wait for the file to appear, or for the process to exit, whichever happens first.
                 while not proc.poll() and not os.path.isfile(conn_info_file):
                     time.sleep(0.1)
-    
+
                 if not os.path.isfile(conn_info_file):
 &gt;                   raise PySparkRuntimeError(
                         error_class="JAVA_GATEWAY_EXITED",

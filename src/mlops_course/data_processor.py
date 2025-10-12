@@ -25,7 +25,7 @@ class DataProcessor:
         This method creates the pre-quality column and performs feature engineering.
         """
         # replace spaces in column names
-        self.df.columns = self.df.columns.str.replace(" ", "_")
+        self.df.columns = [col.replace(" ", "_") for col in self.df.columns]
 
         # created a new class column that will replicate classes 5, 6 and 7 but
         # will group the minority classes into a new class called 101

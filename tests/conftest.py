@@ -1,4 +1,3 @@
-
 """Conftest module."""
 
 import platform
