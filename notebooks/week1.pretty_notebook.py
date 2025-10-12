@@ -3,16 +3,18 @@
 # %pip install loguru pyyaml --quiet
 # %restart_python
 # COMMAND ----------
-from pathlib import Path
 import sys
-sys.path.append(str(Path.cwd().parent / 'src'))
+from pathlib import Path
+
+sys.path.append(str(Path.cwd().parent / "src"))
 
 # COMMAND ----------
-from loguru import logger
-import yaml
 import sys
-from pyspark.sql import SparkSession
+
 import pandas as pd
+import yaml
+from loguru import logger
+from pyspark.sql import SparkSession
 
 from mlops_course.config import ProjectConfig
 from mlops_course.data_processor import DataProcessor
@@ -24,7 +26,7 @@ logger.info(yaml.dump(config, default_flow_style=False))
 
 # COMMAND ----------
 
-# Load the house prices dataset
+# Load the white-wine quality dataset
 spark = SparkSession.builder.getOrCreate()
 
 filepath = "/Volumes/mlops_dev/floreswo/data/winequality-white.csv"
@@ -34,7 +36,7 @@ df = pd.read_csv(filepath, sep=";")
 
 
 # COMMAND ----------
-# Load the house prices dataset
+# Load the white-wine quality dataset
 
 data_processor = DataProcessor(df, config, spark)
 

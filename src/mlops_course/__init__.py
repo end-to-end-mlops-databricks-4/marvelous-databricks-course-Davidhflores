@@ -1,4 +1,4 @@
-"""Hotel Cancellation package."""
+"""Wine Quality package."""
 
 import importlib.metadata
 import importlib.resources
